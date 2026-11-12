@@ -1,6 +1,6 @@
 import os
 from pathlib import Path
-from Groq import groq
+from groq import Groq
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -10,3 +10,55 @@ if not my_api_key:
     raise ValueError("API key kaha ha bhai")
 
 Client = Groq(api_key=my_api_key)
+
+model = "openai/gpt-oss-20b"
+role = "user"
+
+from pydantic import BaseModel
+class Ticket(BaseModel):
+    name: str
+    email: str
+    subject: str
+    
+schema = Ticket.model_json_schema
+
+system_prompt=f"""
+Extract the personal information from the ticket strictly based on this schema and give a json output.
+{schema}
+"""
+
+message_system={
+    "role": "system",
+    "content": system_prompt
+}
+
+text="Hello My name is Pratyush. Yesterday I broke up with my girlfriend sheetal I have an iphone which is not working at all. My address is delhi. My email is abc@gmail.com. My contact number is 82134"
+prompt=f"""
+This is a customer ticket. Please extract the personal information from this.
+{text}
+"""
+
+# message me role and content
+message={
+    "role": role,
+    "content": prompt
+}
+
+messages=[message_system,message]
+
+response=Client.chat.completions.create(model=model, messages=messages)
+print(response)
+
+
+
+# isko padhte kaise hai
+import json
+raw_json=response.choices[0].message.content
+data_file=json.loads(raw_json)
+ticket=Ticket(**data_file)
+
+
+# inko pass kr sakte hai aage!
+print(ticket.name)
+print(ticket.email)
+print(ticket.issue)

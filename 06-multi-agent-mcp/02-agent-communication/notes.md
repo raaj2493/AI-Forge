@@ -1,0 +1,9 @@
+# Learning Notes: 02-agent-communication
+
+## What I learned
+
+## What confused me
+
+## Important takeaways
+
+## Questions to revisit

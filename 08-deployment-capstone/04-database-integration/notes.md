@@ -1,0 +1,9 @@
+# Learning Notes: 04-database-integration
+
+## What I learned
+
+## What confused me
+
+## Important takeaways
+
+## Questions to revisit

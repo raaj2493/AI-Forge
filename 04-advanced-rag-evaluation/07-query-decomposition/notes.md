@@ -1,0 +1,9 @@
+# Learning Notes: 07-query-decomposition
+
+## What I learned
+
+## What confused me
+
+## Important takeaways
+
+## Questions to revisit

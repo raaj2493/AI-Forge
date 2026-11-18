@@ -7,7 +7,10 @@ authors = [
     { name = "Raaj Giri", email = "raj.ash2493@gmail.com" }
 ]
 requires-python = ">=3.15"
-dependencies = []
+dependencies = [
+    "groq>=1.7.0",
+    "python-dotenv>=1.2.4",
+]
 
 [project.scripts]
 ai-engineering = "ai_engineering:main"
